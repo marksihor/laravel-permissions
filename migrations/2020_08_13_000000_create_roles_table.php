@@ -20,7 +20,7 @@ class CreateRolesTable extends Migration
         });
 
         Schema::table('users', function (Blueprint $table) {
-            $table->foreignId('role_id')->after('email')->constrained();
+            $table->foreignId('role_id')->nullable()->after('email')->constrained();
         });
     }
 

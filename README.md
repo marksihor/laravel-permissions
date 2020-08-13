@@ -17,7 +17,17 @@ $ php artisan vendor:publish --provider="MarksIhor\\LaravelPermissions\\Permissi
 
 ## Usage
 
-// soon
+1 . Run migrations
+
+```shell script
+php artisan migrate
+```
+
+1. Add next line to $routeMiddleware array of your Kernel.php file
+
+```php
+    'permission' => \MarksIhor\LaravelPermissions\Http\Middleware\PermissionMiddleware::class,
+```
 
 ## License
 
