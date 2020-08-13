@@ -23,10 +23,31 @@ $ php artisan vendor:publish --provider="MarksIhor\\LaravelPermissions\\Permissi
 php artisan migrate
 ```
 
-1. Add next line to $routeMiddleware array of your Kernel.php file
+2. Add next line to $routeMiddleware array of your Kernel.php file
 
 ```php
     'permission' => \MarksIhor\LaravelPermissions\Http\Middleware\PermissionMiddleware::class,
+```
+
+3. Add role relationship to your user model
+
+```php
+public function role()
+{
+    return $this->belongsTo('MarksIhor\LaravelPermissions\Models\Role');
+}
+```
+
+4. Use it on route like this
+
+```php
+Route::get('/', 'UserController@index')->middleware('permission:view users');
+```
+
+5. Or in other places like this
+
+```php
+app('auth')->user()->role->hasPermission($permissionName); // bool
 ```
 
 ## License
