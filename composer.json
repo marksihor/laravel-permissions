@@ -1,0 +1,25 @@
+{
+    "name": "marksihor/laravel-permissions",
+    "description": "Laravel permissions.",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Ihor Korotkyi",
+            "email": "marks.ihor@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "^7.4",
+        "genealabs/laravel-model-caching": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "MarksIhor\\LaravelPermissions\\": "src"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": ["MarksIhor\\LaravelPermissions\\PermissionsServiceProvider"]
+        }
+    }
+}
