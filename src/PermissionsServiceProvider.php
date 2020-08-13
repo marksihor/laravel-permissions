@@ -14,6 +14,12 @@ class PermissionsServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        // Controllers
+        $this->publishes([
+            __DIR__ . '/../src/Http/Controllers' => app_path('Http/Controllers')
+        ], 'controllers');
+
+        // Migrations
         $this->publishes([
             \dirname(__DIR__) . '/migrations/' => database_path('migrations'),
         ], 'migrations');
