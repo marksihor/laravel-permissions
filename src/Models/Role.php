@@ -45,7 +45,9 @@ class Role extends Model
 
     public function getGroupedPermissionsArray(): array
     {
-        return $this->groupedPermissionsArray();
+        return $this->permissions->groupBy('group')->map(function ($item, $key) {
+            return ['group' => $key, 'permissions' => $item->pluck('name')->toArray()];
+        })->values()->toArray();
     }
 
     public function hasPermission(string $permission): bool
