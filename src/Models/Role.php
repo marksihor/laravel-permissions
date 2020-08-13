@@ -33,6 +33,11 @@ class Role extends Model
         $this->permissions()->detach($this->permissionsNamesToIds($permissions));
     }
 
+    public function updatePermissions(array $permissions): void
+    {
+        $this->permissions()->sync($this->permissionsNamesToIds($permissions));
+    }
+
     private function permissionsNamesToIds(array $permissions): array
     {
         return Permission::whereIn('name', $permissions)->select('id')->get()->pluck('id')->toArray();
