@@ -37,4 +37,19 @@ class Role extends Model
     {
         return Permission::whereIn('name', $permissions)->select('id')->get()->pluck('id')->toArray();
     }
+
+    public function getPermissionsArray(): array
+    {
+        return $this->permissions->pluck('name')->toArray();
+    }
+
+    public function getGroupedPermissionsArray(): array
+    {
+        return $this->groupedPermissionsArray();
+    }
+
+    public function hasPermission(string $permission): bool
+    {
+        return boolval($this->permissions->where('name', $permission)->count());
+    }
 }

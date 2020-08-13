@@ -16,7 +16,7 @@ class PermissionMiddleware
                 : explode('|', $permission);
 
             foreach ($permissions as $key => $permission) {
-                if (app('auth')->user()->hasPermission($permission)) {
+                if (app('auth')->user()->role->hasPermission($permission)) {
                     if ($key === array_key_last($permissions)) return $next($request);
                 }
             }
