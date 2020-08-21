@@ -21,6 +21,24 @@ This step is optional, if you want to get crud controller run the command:
 $ php artisan vendor:publish --provider="MarksIhor\\LaravelPermissions\\PermissionsServiceProvider" --tag=controllers
 ```
 
+If You published the controller, add the routes to your routes file:
+
+```php
+Route::group(['as' => 'roles', 'prefix' => 'roles'/*, 'middleware' => 'permission:view roles'*/], function () {
+    Route::get('/', 'RoleController@index');
+    Route::get('/{model}', 'RoleController@show');
+    Route::get('/{model}/permissions', 'RoleController@permissions')/*->middleware('permission:view roles')*/;
+    Route::post('/', 'RoleController@store')/*->middleware('permission:create roles')*/;
+    Route::patch('/{model}', 'RoleController@update')/*->middleware('permission:update roles')*/;
+    Route::delete('/{model}', 'RoleController@delete')/*->middleware('permission:delete roles')*/;
+    Route::patch('/{model}/permissions/{action}', 'RoleController@updatePermissions')
+        ->where('action', '(attach|detach|update)')
+        /*->middleware('permission:update roles')*/;
+});
+```
+
+
+
 ## Usage
 
 1 . Run migrations
