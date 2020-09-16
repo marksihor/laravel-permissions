@@ -55,8 +55,16 @@ class Role extends Model
         })->values()->toArray();
     }
 
-    public function hasPermission(string $permission): bool
+    public function hasPermission(string $permission, ?array $additionalParams = null): bool
     {
-        return boolval($this->permissions->where('name', $permission)->count());
+        $permission = $this->permissions->where('name', $permission)->first();
+
+        if ($additionalParams) {
+            foreach ($additionalParams as $k => $v) {
+                if ($permission->{$k} != $v) return false;
+            }
+        }
+
+        return boolval($permission);
     }
 }
