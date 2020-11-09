@@ -15,7 +15,15 @@ This step is optional, if you want to customize the tables, you can publish the 
 $ php artisan vendor:publish --provider="MarksIhor\\LaravelPermissions\\PermissionsServiceProvider" --tag=migrations
 ```
 
-This step is optional, if you want to get crud controller run the command:
+### Configs
+
+To publish configs run the command:
+```php
+$ php artisan vendor:publish --provider="MarksIhor\\LaravelPermissions\\PermissionsServiceProvider" --tag=configs
+```
+
+### Controllers
+This step is optional, if you want to get crud controller (instead of use built in routes) run the command:
 
 ```php
 $ php artisan vendor:publish --provider="MarksIhor\\LaravelPermissions\\PermissionsServiceProvider" --tag=controllers

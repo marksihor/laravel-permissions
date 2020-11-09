@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace MarksIhor\LaravelPermissions\Http\Controllers;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use MarksIhor\LaravelPermissions\Models\Role as Model;
 
