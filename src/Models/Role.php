@@ -58,6 +58,7 @@ class Role extends Model
     public function hasPermission(string $permission, ?array $additionalParams = null): bool
     {
         $permission = $this->permissions->where('name', $permission)->first();
+        if (!$permission) return false;
 
         if ($additionalParams) {
             foreach ($additionalParams as $k => $v) {
