@@ -11,7 +11,11 @@ class RoleController extends Controller
 {
     public function index()
     {
-        $collection = Role::all();
+        if (config('roles.pagination')) {
+            $collection = Role::paginate(request()->input('per_page'));
+        } else {
+            $collection = Role::all();
+        }
 
         return response()->json(['data' => $collection], 200);
     }

@@ -6,5 +6,6 @@ return [
         'prefix' => 'api',
         'namespace' => MarksIhor\LaravelPermissions\Http\Controllers\RoleController::class,
         'middleware' => 'auth:api',
-    ]
+    ],
+    'pagination' => true
 ];
