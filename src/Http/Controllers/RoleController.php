@@ -4,17 +4,20 @@ namespace MarksIhor\LaravelPermissions\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use MarksIhor\LaravelFiltering\Filterable;
 use MarksIhor\LaravelPermissions\Models\Permission;
 use MarksIhor\LaravelPermissions\Models\Role;
 
 class RoleController extends Controller
 {
+    use Filterable;
+
     public function index()
     {
         if (config('roles.pagination')) {
-            $collection = Role::paginate(request()->input('per_page'));
+            $collection = $this->filter(Role::query())->paginate(request()->input('per_page'));
         } else {
-            $collection = Role::all();
+            $collection = $this->filter(Role::query())->get();
         }
 
         return response()->json(['data' => $collection], 200);
