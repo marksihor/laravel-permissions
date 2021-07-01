@@ -7,5 +7,6 @@ return [
         'namespace' => MarksIhor\LaravelPermissions\Http\Controllers\RoleController::class,
         'middleware' => 'auth:api',
     ],
-    'pagination' => true
+    'pagination' => true,
+    'system_roles' => [1]
 ];

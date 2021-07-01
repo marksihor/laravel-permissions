@@ -69,6 +69,11 @@ class RoleController extends Controller
 
     public function delete(int $roleId)
     {
+        if ($systemRoles = config('roles.system_roles')) {
+            if (in_array($roleId, $systemRoles)) {
+                return response()->json(['error' => 'Cannot delete system role.', 'code' => 403], 403);
+            }
+        }
         $model = Role::findOrFail($roleId);
         $model->permissions()->detach();
         $model->delete();
