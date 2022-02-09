@@ -88,11 +88,11 @@ class RoleController extends Controller
     {
         $model = Role::findOrFail($roleId);
         $validated = $request->validate([
-            'permissions' => ['required', 'array'],
+            'permissions' => ['array'],
             'permissions.*' => ['string', 'max:256', 'min:3']
         ]);
 
-        $permissions = $validated['permissions'];
+        $permissions = $validated['permissions'] ?? [];
 
         if ($type === 'attach') {
             $model->attachPermissions($permissions);
