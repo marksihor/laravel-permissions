@@ -4,14 +4,11 @@ namespace MarksIhor\LaravelPermissions\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use MarksIhor\LaravelFiltering\Filterable;
 use MarksIhor\LaravelPermissions\Models\Permission;
 use MarksIhor\LaravelPermissions\Models\Role;
 
 class RoleController extends Controller
 {
-    use Filterable;
-
     public function index()
     {
         if (config('roles.pagination')) {
