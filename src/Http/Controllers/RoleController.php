@@ -69,12 +69,20 @@ class RoleController extends Controller
 
     public function delete(int $roleId)
     {
+        $model = Role::findOrFail($roleId);
         if ($systemRoles = config('roles.system_roles')) {
             if (in_array($roleId, $systemRoles)) {
                 return response()->json(['error' => 'Cannot delete system role.', 'code' => 403], 403);
             }
         }
-        $model = Role::findOrFail($roleId);
+        try {
+            if (\DB::table('users')->where('role_id', $roleId)->count()) {
+                return response()->json(['error' => 'Cannot delete the role. There are users that are using it.', 'code' => 403], 403);
+            }
+        } catch (\Exception $exception) {
+            \Log::info($exception->getMessage());
+        }
+
         $model->permissions()->detach();
         $model->delete();
 
