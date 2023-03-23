@@ -10,8 +10,7 @@
     ],
     "require": {
         "php": "^7.4|^8.0",
-        "genealabs/laravel-model-caching": "*",
-        "marksihor/laravel-filtering": "*"
+        "genealabs/laravel-model-caching": "*"
     },
     "autoload": {
         "psr-4": {
